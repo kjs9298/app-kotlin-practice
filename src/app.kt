@@ -32,6 +32,20 @@ fun createRandomRectangle() : Rectangle {
 
 }
 
+fun eval(e: Expr) : Int {
+    if(e is Num) {
+        return e.value
+
+    }
+
+    if(e is Sum) {
+        return eval(e.left) + eval(e.right)
+
+    }
+    throw IllegalArgumentException("Unknown expression.")
+
+}
+
 fun main(args: Array<String>) {
 
     println("Hello, ${if (args.size > 0) args[0] else "someone"}!")
@@ -46,5 +60,6 @@ fun main(args: Array<String>) {
 
     println("isSquare : ${createRandomRectangle().isSquare}")
 
+    println("eval : ${eval(Sum(Sum(Num(1), Num(2)), Num(4)))}")
 
 }
